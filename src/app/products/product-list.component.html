@@ -6,22 +6,19 @@
             <div class="col-md-4">
                 <input
                     type="text"
-                    [(ngModel)]="listFilter"
-                >
+                    [(ngModel)]="listFilter">
             </div>
         </div>
         <div class="table-responsive">
             <table
                 class="table"
-                *ngIf="products && products.length"
-            >
+                *ngIf="products && products.length">
                 <thead>
                     <tr>
                         <th>
                             <button
                                 class="btn btn-primary"
-                                (click)="toggleImage()"
-                            >
+                                (click)="toggleImage()">
                                 {{ showImage ? 'Hide' : 'Show'}} Image
                             </button>
                         </th>
@@ -40,11 +37,10 @@
                                 [src]="product.imageUrl"
                                 [title]="product.productName"
                                 [style.width.px]="imageWidth"
-                                [style.margin.px]="imageMargin"
-                            >
+                                [style.margin.px]="imageMargin">
                         </td>
                         <td>
-                            <a [routerLink]="['/products', product.productId]">{{ product.productName }}</a>
+                            <a [routerLink]="['/products', product.id]">{{ product.productName }}</a>
                         </td>
                         <td>
                             {{product.productCode | lowercase | convertToSpaces: '-'}}
@@ -56,8 +52,14 @@
                         <td>
                             <pm-star
                                 [rating]="product.starRating"
-                                (ratingClicked)="onRatingClicked($event)"
-                            ></pm-star>
+                                (ratingClicked)="onRatingClicked($event)"></pm-star>
+                        </td>
+                        <td>
+                            <a
+                                class="btn btn-primary"
+                                [routerLink]="['/products', product.id, 'edit']">
+                                Edit
+                            </a>
                         </td>
                     </tr>
                 </tbody>
